@@ -1,6 +1,7 @@
 package com.myapplicationdev.android.classjournal;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Module module = (Module) intent.getSerializableExtra("module");
+        final Module module = (Module) intent.getSerializableExtra("module");
         String moduleName = module.getModule();
         final String moduleCode = module.getModuleCode();
         String moduleLink = module.getModuleLink();
@@ -49,7 +50,9 @@ public class SecondActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent moduleIntent = new Intent(Intent.ACTION_VIEW);
+                moduleIntent.setData(Uri.parse(module.getModuleLink()));
+                startActivity(moduleIntent);
             }
         });
 
