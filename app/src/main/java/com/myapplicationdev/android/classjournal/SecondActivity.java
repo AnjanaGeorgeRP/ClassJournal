@@ -5,12 +5,18 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class SecondActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    Button  btnInfo, btnAdd, btnEmail;
+public class SecondActivity extends AppCompatActivity {
+    Button btnInfo, btnAdd, btnEmail;
+    ListView lvGrades;
+    ArrayAdapter aa;
+    ArrayList<DailyCA> dailyCA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +28,16 @@ public class SecondActivity extends AppCompatActivity {
         btnEmail = findViewById(R.id.buttonEmail);
 
         Intent intent = getIntent();
-        final Module module = (Module) intent.getSerializableExtra("module");
+        Module module = (Module) intent.getSerializableExtra("module");
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
+        lvGrades = (ListView) findViewById(R.id.lvGrades);
 
+        dailyCA = new ArrayList<DailyCA>();
+        dailyCA.add(new DailyCA("B", module.getModuleCode(), 1));
+
+        aa = new DailyCAArrayAdapter(this, R.layout.row, dailyCA);
+        lvGrades.setAdapter(aa);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
