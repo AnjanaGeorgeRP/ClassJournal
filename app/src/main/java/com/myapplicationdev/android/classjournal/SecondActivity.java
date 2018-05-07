@@ -32,8 +32,7 @@ public class SecondActivity extends AppCompatActivity {
         final String moduleCode = module.getModuleCode();
         String moduleLink = module.getModuleLink();
 
-        getSupportActionBar().setTitle("Info for " + module.getModuleCode());
-        getSupportActionBar().setTitle("Info for " + module.getModuleCode());
+        getSupportActionBar().setTitle("Info for " + moduleCode);
 
         lvGrades = (ListView) findViewById(R.id.lvGrades);
 
@@ -81,12 +80,6 @@ public class SecondActivity extends AppCompatActivity {
         //  and data contains something
         if(resultCode == RESULT_OK){
             if (data != null) {
-                // Get data passed back from 2nd activity
-
-                // If it is activity started by clicking 				//  Superman, create corresponding String
-                if(requestCode == requestCodeForInfo){
-
-                }
                 // If 2nd activity started by clicking
                 //  Batman, create a corresponding String
                 if(requestCode == requestCodeForAdd){
