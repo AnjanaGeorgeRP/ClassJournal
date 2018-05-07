@@ -28,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
         btnEmail = findViewById(R.id.buttonEmail);
 
         Intent intent = getIntent();
-        Module module = (Module) intent.getSerializableExtra("module");
+        final Module module = (Module) intent.getSerializableExtra("module");
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
         lvGrades = (ListView) findViewById(R.id.lvGrades);
