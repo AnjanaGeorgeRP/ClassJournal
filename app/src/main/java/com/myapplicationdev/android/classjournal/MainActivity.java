@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         maModule = new ModuleAdapter(this, R.layout.main_row, alModule);
         lvModule.setAdapter(maModule);
 
-        alModule.add(new Module("Web Service", "C302", "http://rp.edu.sg"));
-        alModule.add(new Module("Android Programming II", "C347", "http://rp.edu.sg"));
+        alModule.add(new Module("Web Service", "C302", "https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C302"));
+        alModule.add(new Module("Android Programming II", "C347", "https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C347"));
         maModule.notifyDataSetChanged();
 
         lvModule.setOnItemClickListener(new AdapterView.OnItemClickListener() {

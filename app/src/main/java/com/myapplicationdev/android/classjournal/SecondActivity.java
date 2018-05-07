@@ -19,7 +19,6 @@ public class SecondActivity extends AppCompatActivity {
     Button btnInfo, btnAdd, btnEmail;
     int requestCodeForInfo = 1;
     int requestCodeForAdd = 2;
-    int requestCodeForEmail = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +65,10 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent email = new Intent(Intent.ACTION_SEND);
-
-
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"jason_lim@rp.edu.sg"});
+                email.putExtra(Intent.EXTRA_TEXT, "Hi faci,\nI am... \nPlease see my remarks so far, thank you!\n\n\nWeek 1: DG:B" );
+                email.setType("message/rfc822");
+                startActivity(Intent.createChooser(email, "Choose an Email Client : "));
             }
         });
     }
@@ -94,9 +95,6 @@ public class SecondActivity extends AppCompatActivity {
                         aa.notifyDataSetChanged();
                 }
 
-                if(requestCode == requestCodeForEmail){
-
-                }
             }
         }
     }
