@@ -1,6 +1,8 @@
 package com.myapplicationdev.android.classjournal;
 
-public class Module {
+import java.io.Serializable;
+
+public class Module implements Serializable{
     private String module;
     private String moduleCode;
     private String moduleLink;
