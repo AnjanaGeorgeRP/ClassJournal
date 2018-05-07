@@ -26,7 +26,7 @@ public class AddDataActivity extends AppCompatActivity {
         final String moduleCode = dailyInfo.getModuleCode();
         tvWeek.setText("Week " + weekNumber);
 
-
+        getSupportActionBar().setTitle("Add data for Week " + weekNumber);
 
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
