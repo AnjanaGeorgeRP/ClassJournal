@@ -27,7 +27,12 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
+
         Module module = (Module) intent.getSerializableExtra("module");
+        String moduleName = module.getModule();
+        String modueCode = module.getModuleCode();
+        String moduleLink = module.getModuleLink();
+        
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
 
