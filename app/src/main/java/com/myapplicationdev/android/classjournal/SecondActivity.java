@@ -29,23 +29,18 @@ public class SecondActivity extends AppCompatActivity {
 
         Module module = (Module) intent.getSerializableExtra("module");
         String moduleName = module.getModule();
-        String moduleCode = module.getModuleCode();
+        final String moduleCode = module.getModuleCode();
         String moduleLink = module.getModuleLink();
-        
-        getSupportActionBar().setTitle("Info for " + moduleCode);
+
         getSupportActionBar().setTitle("Info for " + moduleCode);
 
         lvGrades = (ListView) findViewById(R.id.lvGrades);
 
         dailyCA = new ArrayList<DailyCA>();
-        dailyCA.add(new DailyCA("B", moduleCode, 1));
+        dailyCA.add(new DailyCA("B", module.getModuleCode(), 1));
 
         aa = new DailyCAArrayAdapter(this, R.layout.row, dailyCA);
         lvGrades.setAdapter(aa);
-        
-        btnInfo = (Button) findViewById(R.id.buttonInfo);
-        btnAdd = (Button) findViewById(R.id.buttonAdd);
-        btnEmail = (Button) findViewById(R.id.buttonEmail);
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +53,9 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SecondActivity.this, AddDataActivity.class);
+                int weekNumber = dailyCA.size();
+                DailyCA dailyAdd = new DailyCA("F",moduleCode,weekNumber);
+                i.putExtra("week", dailyAdd);
                 startActivityForResult(i, requestCodeForAdd);
             }
         });
@@ -67,7 +65,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"jason_lim@rp.edu.sg"});
-                email.putExtra(Intent.EXTRA_TEXT, "Hi faci,\nI am ... \nPlease see my remarks so far, thank you!\n\n\nWeek 1: DG:B" );
+                email.putExtra(Intent.EXTRA_TEXT, "Hi faci,\nI am... \nPlease see my remarks so far, thank you!\n\n\nWeek 1: DG:B" );
                 email.setType("message/rfc822");
                 startActivity(Intent.createChooser(email, "Choose an Email Client : "));
             }
@@ -82,16 +80,12 @@ public class SecondActivity extends AppCompatActivity {
         //  and data contains something
         if(resultCode == RESULT_OK){
             if (data != null) {
-                // Get data passed back from 2nd activity
-
-                // If it is activity started by clicking 				//  Superman, create corresponding String
-                if(requestCode == requestCodeForInfo){
-
-                }
                 // If 2nd activity started by clicking
                 //  Batman, create a corresponding String
                 if(requestCode == requestCodeForAdd){
-
+                        DailyCA daily = (DailyCA) data.getSerializableExtra("newWeek");
+                        dailyCA.add(daily);
+                        aa.notifyDataSetChanged();
                 }
 
             }
