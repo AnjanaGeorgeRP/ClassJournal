@@ -60,7 +60,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SecondActivity.this, AddDataActivity.class);
-                int weekNumber = dailyCA.size();
+                int weekNumber = dailyCA.size()+ 1;
                 DailyCA dailyAdd = new DailyCA("F",moduleCode,weekNumber);
                 i.putExtra("week", dailyAdd);
                 startActivityForResult(i, requestCodeForAdd);
@@ -70,9 +70,14 @@ public class SecondActivity extends AppCompatActivity {
         btnEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = "Hi faci,\nI am... \nPlease see my remarks so far, thank you!\n\n\n";
+                for(int i=0;i<dailyCA.size();i++){
+                    DailyCA dailyInfo = dailyCA.get(i);
+                    text += "Week " + (i+1)+": DG:"+ dailyInfo.getDgGrade()+"\n";
+                }
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"jason_lim@rp.edu.sg"});
-                email.putExtra(Intent.EXTRA_TEXT, "Hi faci,\nI am... \nPlease see my remarks so far, thank you!\n\n\nWeek 1: DG:B" );
+                email.putExtra(Intent.EXTRA_TEXT, text );
                 email.setType("message/rfc822");
                 startActivity(Intent.createChooser(email, "Choose an Email Client : "));
             }
