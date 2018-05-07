@@ -30,9 +30,9 @@ public class SecondActivity extends AppCompatActivity {
 
         Module module = (Module) intent.getSerializableExtra("module");
         String moduleName = module.getModule();
-        String modueCode = module.getModuleCode();
+        final String moduleCode = module.getModuleCode();
         String moduleLink = module.getModuleLink();
-        
+
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
         getSupportActionBar().setTitle("Info for " + module.getModuleCode());
 
@@ -55,6 +55,9 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SecondActivity.this, AddDataActivity.class);
+                int weekNumber = dailyCA.size();
+                DailyCA dailyAdd = new DailyCA("F",moduleCode,weekNumber);
+                i.putExtra("week", dailyAdd);
                 startActivityForResult(i, requestCodeForAdd);
             }
         });
@@ -86,7 +89,9 @@ public class SecondActivity extends AppCompatActivity {
                 // If 2nd activity started by clicking
                 //  Batman, create a corresponding String
                 if(requestCode == requestCodeForAdd){
-
+                        DailyCA daily = (DailyCA) data.getSerializableExtra("newWeek");
+                        dailyCA.add(daily);
+                        aa.notifyDataSetChanged();
                 }
 
                 if(requestCode == requestCodeForEmail){
