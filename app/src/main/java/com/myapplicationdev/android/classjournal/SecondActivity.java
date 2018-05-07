@@ -12,8 +12,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-//        Intent intent = getIntent();
-//        Module module = (Module) intent.getSerializableExtra("module");
-//        Toast.makeText(getApplicationContext(), module.getModuleCode(), Toast.LENGTH_LONG).show();
+        Intent intent = getIntent();
+        Module module = (Module) intent.getSerializableExtra("module");
     }
 }
