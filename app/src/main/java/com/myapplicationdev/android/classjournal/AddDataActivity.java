@@ -25,7 +25,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                 RadioButton rb = (RadioButton) findViewById(selectedButtonId);
                 String grade = rb.getText().toString();
-                
+
             }
         });
 
