@@ -42,6 +42,10 @@ public class SecondActivity extends AppCompatActivity {
         aa = new DailyCAArrayAdapter(this, R.layout.row, dailyCA);
         lvGrades.setAdapter(aa);
 
+        btnInfo = (Button) findViewById(R.id.buttonInfo);
+        btnAdd = (Button) findViewById(R.id.buttonAdd);
+        btnEmail = (Button) findViewById(R.id.buttonEmail);
+
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
