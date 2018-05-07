@@ -14,5 +14,8 @@ public class SecondActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Module module = (Module) intent.getSerializableExtra("module");
+        String moduleCode = module.getModuleCode();
+        String moduleName = module.getModule();
+        String moduleLink = module.getModuleLink();
     }
 }
